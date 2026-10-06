@@ -1,0 +1,17 @@
+# Mofisc - Financial Intelligence Platform
+# https://mofisc.com/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /signin
+Disallow: /signup
+Disallow: /reset-password
+
+# Sitemap location
+Sitemap: https://mofisc.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

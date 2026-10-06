@@ -1,0 +1,663 @@
+/* src/styles/SubscriptionCalendar.css */
+
+/* Layout Components */
+.calendar-doughnut-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--bg-primary);
+  border-radius: 16px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.subscription-calendar-container {
+  display: flex;
+  flex-direction: row; /* Change to row to place calendar and chart side by side */
+  align-items: flex-start;
+  gap: 1rem;
+  height: 100%;
+  min-height: 0;
+  padding: 1rem;
+}
+
+/* Common Components */
+.main-title {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+/* Calendar Styles */
+.subscription-calendar {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  padding-bottom: 8px;
+  overflow: visible;
+}
+
+.calendar-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+}
+
+.calendar-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.month-navigation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.month-year {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0 8px;
+}
+
+.nav-button {
+  background-color: var(--bg-secondary);
+  border: none;
+  opacity: 0.8;
+  border-radius: 70%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-button:hover {
+  background-color: var(--accent-color);
+}
+
+.monthly-spend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.spend-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.spend-amount {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Calendar Grid Alignment */
+.days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  gap: 2px;
+  justify-content: center;
+  margin-bottom: 4px;
+  padding: 0 1px; /* Add slight padding to align with calendar days */
+}
+
+.day-of-week {
+  width: 36px; /* Match new grid size */
+  font-size: 10px;
+  padding: 2px 0;
+  text-align: center;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  gap: 2px; /* Match gap with days-of-week */
+  justify-content: center;
+  overflow: visible;
+  padding: 0 1px; /* Match padding with days-of-week */
+  position: relative;
+  z-index: 1;
+}
+
+/* Calendar Day Cell */
+.calendar-day {
+  position: relative;
+  height: 36px;
+  width: 36px;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.calendar-day.other-month {
+  opacity: 0.4;
+}
+
+/* Remove the calendar-day hover trigger */
+.calendar-day:hover .subscription-details {
+  display: none;
+}
+
+.day-number {
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+/* Subscription Icons Container */
+.subscription-icons {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: -7px;
+  z-index: 2;
+}
+
+/* Icon Container in Calendar Grid */
+.subscription-icon {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  min-height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease;
+}
+
+/* Icon wrapper from SubscriptionIcon component - true brand colors */
+.subscription-icon-wrapper-inner {
+  /* Ensure SVG icons inherit and display brand colors correctly */
+}
+
+.subscription-icon-wrapper-inner svg {
+  /* Force brand color inheritance for react-icons */
+  fill: currentColor !important;
+}
+
+/* Update icon wrapper */
+.subscription-icon-wrapper {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  margin-left: -7px;
+}
+
+/* Hover Effects */
+.subscription-icon-wrapper:hover {
+  z-index: 1000; /* Ensure hover card is above others */
+}
+
+.subscription-icon-wrapper:hover .subscription-icon {
+  transform: scale(1.1);
+}
+
+/* Ensure the hover card stays within viewport */
+.subscription-icon-wrapper:hover .subscription-details {
+  display: block;
+}
+
+/* First icon doesn't need negative margin */
+.subscription-icon-wrapper:first-child {
+  margin-left: 0;
+}
+
+
+/* Subscription Details Hover Card */
+.subscription-details {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+  z-index: 1001;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* Smart positioning for tooltips near edges */
+.subscription-details.tooltip-left {
+  left: 40px;
+  transform: translateX(0);
+}
+
+.subscription-details.tooltip-right {
+  left: auto;
+  right: 40px;
+  transform: translateX(0);
+}
+
+.subscription-details.tooltip-bottom {
+  bottom: auto;
+  top: calc(100% + 8px);
+}
+
+/* Combine positioning classes */
+.subscription-details.tooltip-bottom.tooltip-left {
+  left: 40px;
+  right: auto;
+  transform: translateX(0);
+}
+
+.subscription-details.tooltip-bottom.tooltip-right {
+  left: auto;
+  right: 40px;
+  transform: translateX(0);
+}
+
+.subscription-details-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto auto auto;
+  gap: 2px;
+  width: 100%;
+}
+
+/* Hover card icon sizing */
+.subscription-details .subscription-icon {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  margin-right: 8px;
+}
+
+.subscription-name {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  font-size: 8px;
+  font-weight: bold;
+  align-self: center;
+  margin-left: 4px;
+}
+
+.subscription-amount {
+  grid-row: 1 / 2;
+  grid-column: 3 / 4;
+  font-size: 8px;
+  font-weight: bold;
+  text-align: right;
+  align-self: center;
+}
+
+.subscription-next-payment {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  font-size: 8px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.subscription-frequency {
+  grid-row: 2 / 3;
+  grid-column: 1 / 3;
+  font-size: 8px;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.subscription-total {
+  grid-row: 3 / 4;
+  grid-column: 1 / 3;
+  font-size: 8px;
+  color: var(--text-secondary);
+  align-self: end;
+}
+
+.subscription-total-amount {
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+  font-size: 8px;
+  font-weight: bold;
+  text-align: right;
+  align-self: end;
+}
+
+/* Doughnut Chart */
+.subscription-doughnut-chart {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+  overflow: visible;
+}
+
+.subscription-doughnut-chart .main-title {
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+}
+
+.doughnut-svg-container {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: 10px;
+}
+
+.subscription-doughnut-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.subscription-doughnut-wrapper {
+  position: relative;
+  width: 320px;
+  height: 280px;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* Large screen layout optimization */
+@media (min-width: 1024px) {
+  .subscription-doughnut-container {
+    height: fit-content;
+    align-items: flex-start;
+    padding-top: 0;
+  }
+
+  .subscription-doughnut-wrapper {
+    margin-top: 0;
+  }
+}
+
+.subscription-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.doughnut-svg-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.subscription-doughnut-chart path {
+  stroke: #4285F4;
+  transition: all 0.3s ease;
+}
+
+.subscription-doughnut-chart path:hover {
+  stroke: #174EA6;
+  filter: drop-shadow(0px 0px 5px rgba(66, 133, 244, 0.5));
+}
+
+.doughnut-center-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: auto;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.doughnut-center-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.doughnut-center-amount {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.subscription-icon-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1023px) {
+  .subscription-calendar-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .subscription-calendar {
+    margin-bottom: 12px;
+    max-width: 320px;
+  }
+
+  .subscription-doughnut-container {
+    height: fit-content;
+    padding-top: 0 !important;
+  }
+
+  .subscription-doughnut-wrapper {
+    width: 100%;
+    max-width: 320px;
+    height: 280px;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .subscription-calendar {
+    max-width: 320px;
+  }
+
+  .subscription-doughnut-wrapper {
+    width: 250px;
+    height: 220px;
+    max-width: 250px;
+    min-width: 220px;
+  }
+
+  .doughnut-svg-container {
+    max-width: 220px;
+    height: 220px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 32px);
+    gap: 1px;
+  }
+
+  .days-of-week {
+    grid-template-columns: repeat(7, 32px);
+    gap: 1px;
+  }
+
+  .calendar-day {
+    height: 32px;
+    width: 32px;
+  }
+
+  .doughnut-center-label {
+    font-size: 9px;
+  }
+
+  .doughnut-center-amount {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subscription-doughnut-wrapper {
+    width: 200px;
+    height: 180px;
+    max-width: 200px;
+    min-width: 180px;
+  }
+
+  .doughnut-svg-container {
+    max-width: 180px;
+    height: 180px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 28px);
+  }
+
+  .days-of-week {
+    grid-template-columns: repeat(7, 28px);
+  }
+
+  .calendar-day {
+    height: 28px;
+    width: 28px;
+  }
+
+  .day-number {
+    font-size: 10px;
+  }
+
+  .subscription-icon {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    min-height: 12px;
+  }
+
+  .doughnut-center-label {
+    font-size: 8px;
+  }
+
+  .doughnut-center-amount {
+    font-size: 10px;
+  }
+}
+
+@media (max-height: 600px) {
+  .calendar-day {
+    height: 32px;
+    width: 32px;
+  }
+
+  .days-of-week {
+    grid-template-columns: repeat(7, 32px);
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 32px);
+  }
+}
+
+.no-subscriptions-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px;
+}
+
+/* styles for the insights section */
+.subscription-insights {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  border: 1px solid rgba(210, 227, 252, 0.5);
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.insight-card {
+  background: rgba(210, 227, 252, 0.3);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(210, 227, 252, 0.4);
+  padding: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Coming Up Next scrollbar styling */
+.upcoming-payments-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(66, 133, 244, 0.4) rgba(210, 227, 252, 0.3);
+}
+
+.upcoming-payments-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.upcoming-payments-scroll::-webkit-scrollbar-track {
+  background: rgba(210, 227, 252, 0.3);
+  border-radius: 3px;
+}
+
+.upcoming-payments-scroll::-webkit-scrollbar-thumb {
+  background: rgba(66, 133, 244, 0.4);
+  border-radius: 3px;
+}
+
+.upcoming-payments-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 133, 244, 0.6);
+}

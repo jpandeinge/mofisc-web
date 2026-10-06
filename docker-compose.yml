@@ -1,0 +1,56 @@
+services:
+  # React Frontend Application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-development}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    environment:
+      # API Configuration
+      - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:8000}
+
+      # Supabase Configuration
+      - REACT_APP_SUPABASE_URL=${REACT_APP_SUPABASE_URL}
+      - REACT_APP_SUPABASE_ANON_KEY=${REACT_APP_SUPABASE_ANON_KEY}
+
+      # Firebase Configuration
+      - REACT_APP_FIREBASE_API_KEY=${REACT_APP_FIREBASE_API_KEY}
+      - REACT_APP_FIREBASE_AUTH_DOMAIN=${REACT_APP_FIREBASE_AUTH_DOMAIN}
+      - REACT_APP_FIREBASE_PROJECT_ID=${REACT_APP_FIREBASE_PROJECT_ID}
+      - REACT_APP_FIREBASE_STORAGE_BUCKET=${REACT_APP_FIREBASE_STORAGE_BUCKET}
+      - REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${REACT_APP_FIREBASE_MESSAGING_SENDER_ID}
+      - REACT_APP_FIREBASE_APP_ID=${REACT_APP_FIREBASE_APP_ID}
+      - REACT_APP_FIREBASE_MEASUREMENT_ID=${REACT_APP_FIREBASE_MEASUREMENT_ID}
+      - REACT_APP_FIREBASE_VAPID_KEY=${REACT_APP_FIREBASE_VAPID_KEY}
+
+      # Sentry Configuration
+      - REACT_APP_SENTRY_DSN=${REACT_APP_SENTRY_DSN}
+      - REACT_APP_SENTRY_ENVIRONMENT=${REACT_APP_SENTRY_ENVIRONMENT:-development}
+
+      # Environment
+      - NODE_ENV=${NODE_ENV:-development}
+      - GENERATE_SOURCEMAP=${GENERATE_SOURCEMAP:-false}
+      - DISABLE_ESLINT_PLUGIN=${DISABLE_ESLINT_PLUGIN:-true}
+      - WDS_SOCKET_PORT=0
+
+    volumes:
+      # Only mount source code in development
+      - ./src:/app/src
+      - ./public:/app/public
+      - /app/node_modules
+
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    networks:
+      - galahad-network
+
+networks:
+  galahad-network:
+    driver: bridge

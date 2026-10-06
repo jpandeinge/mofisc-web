@@ -1,0 +1,24 @@
+{
+  "name": "mofisc-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "build": "remotion render src/index.ts LandingPageDemo out/landing-demo.mp4",
+    "build:showcase": "remotion render src/index.ts FeatureShowcase out/feature-showcase.mp4",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.524",
+    "@remotion/transitions": "4.0.524",
+    "lucide-react": "^0.575.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.7.0",
+    "remotion": "4.0.524"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^5.9.3"
+  }
+}

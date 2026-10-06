@@ -1,0 +1,31 @@
+/* Enhanced chart interactions */
+.recharts-area {
+    transition: opacity 0.2s ease;
+  }
+
+  .recharts-area:hover {
+    opacity: 0.8;
+  }
+
+  /* Smooth transitions for all interactive elements */
+  .metric-card,
+  .date-range-button,
+  .legend-item {
+    transition: all 0.2s ease;
+  }
+
+  /* Enhanced tooltips */
+  .recharts-tooltip-wrapper {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Ambient background animations */
+  @keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.4; }
+  }
+
+  .ambient-glow {
+    animation: pulse 4s ease-in-out infinite;
+  }

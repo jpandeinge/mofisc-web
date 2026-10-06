@@ -1,0 +1,35 @@
+/* src/styles/IncomeExpenseTable.css */
+
+.overflow-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(66, 133, 244, 0.4) rgba(210, 227, 252, 0.3);
+}
+
+.overflow-auto::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.overflow-auto::-webkit-scrollbar-track {
+  background: rgba(210, 227, 252, 0.3);
+  border-radius: 2px;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb {
+  background: rgba(66, 133, 244, 0.4);
+  border-radius: 2px;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 133, 244, 0.6);
+}
+
+/* Make sure the sticky header stays on top */
+.sticky {
+  position: sticky;
+  z-index: 50;
+}
+
+.table-row-hover:hover {
+  background-color: rgba(210, 227, 252, 0.4);
+}

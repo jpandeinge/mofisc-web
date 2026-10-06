@@ -1,0 +1,123 @@
+/* Custom Toast Styles for Galahad */
+
+/* Override default toast animations for smoother, more seamless transitions */
+.Toastify__toast {
+  font-family: inherit;
+  opacity: 0.95 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.Toastify__toast--success {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-left: 2px solid rgba(110, 231, 183, 0.6) !important;
+}
+
+.Toastify__toast--error {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-left: 2px solid rgba(239, 68, 68, 0.6) !important;
+}
+
+.Toastify__toast--info {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-left: 2px solid rgba(66, 133, 244, 0.7) !important;
+}
+
+.Toastify__toast--warning {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-left: 2px solid rgba(245, 158, 11, 0.6) !important;
+}
+
+/* Remove custom animations - use default react-toastify animations */
+
+/* Toast body text styling */
+.Toastify__toast-body {
+  padding: 0;
+  line-height: 1.4;
+  font-size: 12px;
+}
+
+/* Close button styling */
+.Toastify__close-button {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  color: #174EA6 !important;
+  align-self: flex-start;
+  padding: 4px;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+.Toastify__close-button > svg {
+  height: 16px;
+  width: 16px;
+}
+
+/* Progress bar container */
+.Toastify__progress-bar-container {
+  height: 3px;
+}
+
+.Toastify__progress-bar {
+  height: 3px;
+}
+
+/* Icon sizing for smaller toasts */
+.Toastify__toast-icon {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+
+/* Ensure proper spacing between toasts */
+.Toastify__toast-container {
+  padding: 8px;
+  pointer-events: none !important;
+}
+
+.Toastify__toast-container > * {
+  pointer-events: auto !important;
+}
+
+/* Mobile responsive adjustments */
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    width: calc(100vw - 32px);
+    padding: 0;
+    left: 16px;
+    right: 16px;
+    margin: 0;
+  }
+
+  .Toastify__toast {
+    margin-bottom: 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    padding: 10px 14px;
+    min-height: 44px;
+  }
+}
+
+/* Smooth fade effect on background */
+.Toastify__toast::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(66, 133, 244, 0.05) 0%, rgba(210, 227, 252, 0.05) 100%);
+  border-radius: inherit;
+  pointer-events: none !important;
+  z-index: -1;
+}
+
+/* Hover effect for better UX */
+.Toastify__toast:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}

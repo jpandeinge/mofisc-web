@@ -1,0 +1,44 @@
+/* Custom date picker styling */
+.datepicker-input {
+    color-scheme: dark;
+  }
+
+  .datepicker-input::-webkit-calendar-picker-indicator {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .datepicker-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
+  .datepicker-input::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+
+  .datepicker-input::-webkit-datetime-edit-text {
+    color: var(--text-primary);
+    padding: 0 0.2em;
+  }
+
+  .datepicker-input::-webkit-datetime-edit-month-field,
+  .datepicker-input::-webkit-datetime-edit-day-field,
+  .datepicker-input::-webkit-datetime-edit-year-field {
+    color: var(--text-primary);
+  }
+
+  /* Style for the calendar popup */
+  ::-webkit-calendar-picker-indicator {
+    background-color: var(--bg-secondary);
+    padding: 0.2rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  /* Focus styles */
+  .datepicker-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color);
+    }

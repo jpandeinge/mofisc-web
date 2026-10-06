@@ -1,0 +1,52 @@
+steps:
+- id: fetch secrets
+  name: "gcr.io/cloud-builders/gcloud"
+  entrypoint: "bash"
+  args:
+  - "-c"
+  - "gcloud secrets versions access latest --secret=${_GOOGLE_SECRET_NAME} --project=${PROJECT_ID} > /workspace/.env"
+
+- id: build-docker-image
+  name: gcr.io/cloud-builders/docker
+  args:
+  - build
+  - -t
+  - ${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_APP_ENVIRONMENT}:latest
+  - .
+
+- id: push-docker-image
+  name: gcr.io/cloud-builders/docker
+  args:
+  - push
+  - ${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_APP_ENVIRONMENT}:latest
+
+- id: artifact-cleanup-policy
+  name: asia-docker.pkg.dev/gcr-cleaner/gcr-cleaner/gcr-cleaner-cli:latest
+  args:
+  - -repo
+  - ${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_APP_ENVIRONMENT}
+  - -keep
+  - "3"
+  - -tag-filter-any
+  - ".*"
+
+- id: deploy-cloud-run
+  name: gcr.io/cloud-builders/gcloud
+  args:
+  - run
+  - deploy
+  - ${_REPO_NAME}
+  - --service-account=${_SERVICE_ACCOUNT}
+  - --image=${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_APP_ENVIRONMENT}:latest
+  - --region=${_LOCATION}
+  - --platform=managed
+  - --memory=${_MEMORY}
+  - --cpu=${_CPU}
+  - --min-instances=${_MIN_INSTANCES}
+  - --max-instances=${_MAX_INSTANCES}
+  - --timeout=1200s
+  - --allow-unauthenticated
+
+options:
+  dynamic_substitutions: true
+  logging: CLOUD_LOGGING_ONLY

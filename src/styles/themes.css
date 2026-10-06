@@ -1,0 +1,107 @@
+/* src/styles/themes.css */
+/*
+ * Central Color System
+ * All colors are defined here for easy maintenance
+ * Follow Revolut's design principles: clean, minimal, consistent
+ */
+
+:root {
+  /* Primary Colors - Blue Palette */
+  --color-primary-dark: #174EA6;
+  --color-primary-main: #4285F4;
+  --color-primary-light: #D2E3FC;
+  --color-primary-lighter: #E8F0FE;
+
+  /* Background Colors */
+  --color-bg-primary: #F1F3F4;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #FAFBFC;
+
+  /* Text Colors */
+  --color-text-primary: #174EA6;
+  --color-text-secondary: #5F6368;
+  --color-text-tertiary: #80868B;
+  --color-text-inverse: #FFFFFF;
+
+  /* Border Colors */
+  --color-border-light: #D2E3FC;
+  --color-border-main: #4285F4;
+  --color-border-subtle: #E8F0FE;
+
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+  --color-info: #4285F4;
+
+  /* Legacy support - map to new color system */
+  --bg-primary: var(--color-bg-primary);
+  --bg-secondary: var(--color-bg-secondary);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --accent-color: var(--color-primary-main);
+  --border-color: var(--color-border-light);
+  --button-text: var(--color-text-primary);
+  --button-hover: var(--color-primary-lighter);
+  --button-active: var(--color-primary-main);
+  --hover-bg: var(--color-primary-light);
+  --active-bg: var(--color-primary-light);
+
+  /* HSL values for Tailwind compatibility */
+  --background: 200 14% 95%;
+  --foreground: 211 76% 37%;
+  --card: 0 0% 100%;
+  --card-foreground: 211 76% 37%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 211 76% 37%;
+  --primary: 217 89% 61%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 216 88% 91%;
+  --secondary-foreground: 211 76% 37%;
+  --muted: 216 88% 91%;
+  --muted-foreground: 0 0% 37%;
+  --accent: 217 89% 61%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 76% 36%;
+  --success-foreground: 0 0% 100%;
+  --border: 216 88% 91%;
+  --input: 216 88% 91%;
+  --ring: 217 89% 61%;
+  --radius: 0.5rem;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.border-color {
+  border-color: var(--border-color);
+}
+
+.accent-color {
+  color: var(--accent-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}

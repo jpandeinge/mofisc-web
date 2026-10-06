@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mofisc Design System - Fintech Dark Theme */
+
+@layer base {
+  :root {
+    --background: 200 14% 95%;
+    --foreground: 211 76% 37%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 211 76% 37%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 211 76% 37%;
+
+    --primary: 217 89% 61%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 216 88% 91%;
+    --secondary-foreground: 211 76% 37%;
+
+    --muted: 216 88% 91%;
+    --muted-foreground: 0 0% 37%;
+
+    --accent: 217 89% 61%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 46%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 216 88% 91%;
+    --input: 216 88% 91%;
+    --ring: 217 89% 61%;
+
+    --radius: 0.75rem;
+
+    /* Custom Blue tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(211 76% 37%) 0%, hsl(217 89% 61%) 100%);
+    --gradient-light: linear-gradient(180deg, hsl(200 14% 95%) 0%, hsl(216 88% 91%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(216 88% 91%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(217 89% 61% / 0.15) 0%, transparent 70%);
+
+    --shadow-glow: 0 0 60px hsl(217 89% 61% / 0.2);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.08);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.12);
+
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(216 88% 91% / 0.5);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 211 76% 37%;
+    --sidebar-primary: 217 89% 61%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 216 88% 91%;
+    --sidebar-accent-foreground: 211 76% 37%;
+    --sidebar-border: 216 88% 91%;
+    --sidebar-ring: 217 89% 61%;
+  }
+
+  .dark {
+    --background: 200 14% 95%;
+    --foreground: 211 76% 37%;
+    --card: 0 0% 100%;
+    --card-foreground: 211 76% 37%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 211 76% 37%;
+    --primary: 217 89% 61%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 88% 91%;
+    --secondary-foreground: 211 76% 37%;
+    --muted: 216 88% 91%;
+    --muted-foreground: 0 0% 37%;
+    --accent: 217 89% 61%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 88% 91%;
+    --input: 216 88% 91%;
+    --ring: 217 89% 61%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 211 76% 37%;
+    --sidebar-primary: 217 89% 61%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 216 88% 91%;
+    --sidebar-accent-foreground: 211 76% 37%;
+    --sidebar-border: 216 88% 91%;
+    --sidebar-ring: 217 89% 61%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Performance optimizations */
+  img {
+    content-visibility: auto;
+  }
+}
+
+@layer components {
+  .landing-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .landing-page h1,
+  .landing-page h2,
+  .landing-page h3,
+  .landing-page h4 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .public-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f8fafc;
+    color: #15263c;
+  }
+
+  .bank-marquee {
+    overflow: hidden;
+  }
+
+  .bank-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bank-marquee 24s linear infinite;
+    will-change: transform;
+  }
+
+  .bank-marquee:hover .bank-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .bank-marquee-set {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  @keyframes bank-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bank-marquee-track {
+      animation: none;
+      will-change: auto;
+    }
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* World-class typography scale - Revolut/Monzo style */
+  .heading-xl {
+    @apply text-[3rem] sm:text-[3.5rem] lg:text-[4rem] font-bold tracking-tight leading-[1.1];
+  }
+
+  .heading-lg {
+    @apply text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-[1.15];
+  }
+
+  .heading-md {
+    @apply text-xl sm:text-2xl font-semibold tracking-tight;
+  }
+
+  .body-lg {
+    @apply text-base sm:text-lg leading-relaxed;
+  }
+
+  .body-base {
+    @apply text-sm sm:text-base leading-relaxed;
+  }
+
+  .body-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 6s ease infinite;
+  }
+
+  /* Smooth scroll offset for fixed navbar */
+  section[id] {
+    scroll-margin-top: 100px;
+  }
+
+  /* Enhanced button animations */
+  .btn-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Parallax effect */
+  .parallax {
+    will-change: transform;
+  }
+
+  /* Better focus states for accessibility */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+}
